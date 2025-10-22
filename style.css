@@ -77,3 +77,7 @@
             font-weight: bold;
             color: #128488;
         }
+        .break-line {
+            border: 5px solid #128488;
+            margin-bottom: 20px;
+        }
