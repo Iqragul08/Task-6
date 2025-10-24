@@ -64,7 +64,7 @@
         <h2>4.Name Capitalizer</h2>
         <div class="input-box">
             <label for="name" class="form-label fw-semibold">Enter your name:</label>
-            <input type="text" class="input" id="nameInput" placeholder="e.g. iqra">
+            <input type="text" class="input" id="userName" placeholder="e.g. iqra">
         </div>
         <button class="btn1" onclick="capitalizeName()">Click here</button>
         <p id="output4" class="result"></p>
@@ -180,17 +180,29 @@
 
         // Capitalize the first letter
         function capitalizeName() {
-            const input = document.getElementById("nameInput").value.trim();
+      let name = document.getElementById("userName").value.trim();
 
-            if (input === "") {
-                document.getElementById("output4").innerText = "Please enter a name!";
-                return;
-            }
+      // Spell check (only letters)
+    
 
-            const capitalized = input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+      if (name.length === 0) {
+        document.getElementById("output4").innerText = "Please enter your name first!";
+        return;
+      }
 
-            document.getElementById("output4").innerText = `Your formatted name: ${capitalized}`;
-        }
+      let first = name[0].toUpperCase();
+      let last = name[name.length - 1].toUpperCase();
+      let middleIndex = Math.floor(name.length / 2);
+      let middle = name[middleIndex].toUpperCase();
+
+      let nameArr = name.split('');
+      nameArr[0] = first;
+      nameArr[middleIndex] = middle;
+      nameArr[name.length - 1] = last;
+
+      let finalName = nameArr.join('');
+      document.getElementById("output4").innerText = "your formated name is:" + finalName ;
+    }
 
         // BMI calculator
         function calculateBMI() {
@@ -245,7 +257,7 @@
             document.getElementById("lastElement").innerHTML = `Last Element: ${last}`;
         }
 
-         // Function to calculate the sum
+        // Function to calculate the sum
         function calculateSum() {
 
             const num1 = document.getElementById('num1');
