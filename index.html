@@ -178,31 +178,42 @@
             document.getElementById("output3").innerText = `The next number after ${num} is ${nextNum}`;
         }
 
+
         // Capitalize the first letter
         function capitalizeName() {
-      let name = document.getElementById("userName").value.trim();
+            let input = document.getElementById("userName").value.trim();
 
-      // Spell check (only letters)
-    
 
-      if (name.length === 0) {
-        document.getElementById("output4").innerText = "Please enter your name first!";
-        return;
-      }
+            if (!/^[a-z ]+$/.test(input)) {
+                document.getElementById("output4").innerText = "  Please enter lowercase letters and spaces only!";
+                return;
+            }
 
-      let first = name[0].toUpperCase();
-      let last = name[name.length - 1].toUpperCase();
-      let middleIndex = Math.floor(name.length / 2);
-      let middle = name[middleIndex].toUpperCase();
 
-      let nameArr = name.split('');
-      nameArr[0] = first;
-      nameArr[middleIndex] = middle;
-      nameArr[name.length - 1] = last;
+            let words = input.split(" ");
 
-      let finalName = nameArr.join('');
-      document.getElementById("output4").innerText = "your formated name is:" + finalName ;
-    }
+
+            for (let w = 0; w < words.length; w++) {
+                let name = words[w];
+                if (name.length > 0) {
+                    let firstIndex = 0;
+                    let middleIndex = Math.floor(name.length / 2);
+                    let lastIndex = name.length - 1;
+
+                    let chars = name.split('');
+
+
+                    for (let i = 0; i < chars.length; i++) {
+                        if (i === firstIndex || i === middleIndex || i === lastIndex) {
+                            chars[i] = chars[i].toUpperCase();
+                        }
+                    }
+                    words[w] = chars.join('');
+                }
+            }
+            let finalResult = words.join(" ");
+            document.getElementById("output4").innerText = `your formated name is: ${finalResult} `;
+        }
 
         // BMI calculator
         function calculateBMI() {
