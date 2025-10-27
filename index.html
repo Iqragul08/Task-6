@@ -63,8 +63,8 @@
         <!-- 4th scenario -->
         <h2>4.Name Capitalizer</h2>
         <div class="input-box">
-            <label for="name" class="form-label fw-semibold">Enter your name:</label>
-            <input type="text" class="input" id="userName" placeholder="e.g. iqra">
+            <label for="name" class="form-label fw-semibold">Enter your full name:</label>
+            <input type="text" class="input" id="userName" placeholder="e.g. mr xyz khan">
         </div>
         <button class="btn1" onclick="capitalizeName()">Click here</button>
         <p id="output4" class="result"></p>
@@ -178,42 +178,27 @@
             document.getElementById("output3").innerText = `The next number after ${num} is ${nextNum}`;
         }
 
-
-        // Capitalize the first letter
+        //name capitalizer
         function capitalizeName() {
-            let input = document.getElementById("userName").value.trim();
+            let name = document.getElementById("userName").value.trim();
 
-
-            if (!/^[a-z ]+$/.test(input)) {
-                document.getElementById("output4").innerText = "  Please enter lowercase letters and spaces only!";
+            if (name === "") {
+                document.getElementById("output4").innerText = "Please enter your full name!";
                 return;
             }
 
-
-            let words = input.split(" ");
-
-
-            for (let w = 0; w < words.length; w++) {
-                let name = words[w];
-                if (name.length > 0) {
-                    let firstIndex = 0;
-                    let middleIndex = Math.floor(name.length / 2);
-                    let lastIndex = name.length - 1;
-
-                    let chars = name.split('');
-
-
-                    for (let i = 0; i < chars.length; i++) {
-                        if (i === firstIndex || i === middleIndex || i === lastIndex) {
-                            chars[i] = chars[i].toUpperCase();
-                        }
-                    }
-                    words[w] = chars.join('');
+            // Split by spaces and capitalize first letter of each part
+            let words = name.toLowerCase().split(" ");
+            for (let i = 0; i < words.length; i++) {
+                if (words[i].length > 0) {
+                    words[i] = words[i][0].toUpperCase() + words[i].slice(1);
                 }
             }
-            let finalResult = words.join(" ");
-            document.getElementById("output4").innerText = `your formated name is: ${finalResult} `;
+
+            let finalName = words.join(" ");
+            document.getElementById("output4").innerText = `your full formated name is:${finalName} `;
         }
+
 
         // BMI calculator
         function calculateBMI() {
